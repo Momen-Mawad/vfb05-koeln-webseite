@@ -16,8 +16,8 @@ export default async function DashboardPage() {
       <div className="p-8 border rounded-lg shadow-md text-center">
         <h1 className="text-2xl font-bold">Willkommen im Mitgliederbereich!</h1>
         <p className="mt-2">
-          Angemeldet als:{" "}
-          <strong>{session.user?.name || session.user?.email}</strong>
+          Angemeldet als:
+          <strong> {session.user?.name || session.user?.email}</strong>
         </p>
         <div className="mt-6">
           <SignOutButton />
