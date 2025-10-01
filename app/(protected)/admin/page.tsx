@@ -1,7 +1,6 @@
 "use client";
 
 // app/(protected)/admin/page.tsx
-
 import { useEffect, useState, useCallback } from "react";
 import {
   Card,
@@ -20,6 +19,8 @@ import {
 } from "@/components/ui/table";
 import { IUser } from "@/models/User";
 import AddUserDialog from "@/components/admin/AddUserDialog";
+import EditUserDialog from "@/components/admin/EditUserDialog";
+import DeleteUserDialog from "@/components/admin/DeleteUserDialog";
 
 export default function AdminPage() {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -68,6 +69,7 @@ export default function AdminPage() {
             <TableHead>E-Mail</TableHead>
             <TableHead>Rolle</TableHead>
             <TableHead>Beigetreten am</TableHead>
+            <TableHead>Aktionen</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -76,14 +78,21 @@ export default function AdminPage() {
               <TableCell className="font-medium">{user.name}</TableCell>
               <TableCell>{user.email}</TableCell>
               <TableCell>
-                {typeof user.role === "string"
-                  ? user.role
-                  : String(user.role?.toString?.() ?? "")}
+                {typeof user.role === "string" ? user.role : String(user.role)}
               </TableCell>
               <TableCell>
                 {user.createdAt
                   ? new Date(user.createdAt).toLocaleDateString("de-DE")
                   : "-"}
+              </TableCell>
+              <TableCell className="text-middle">
+                <div className="flex justify-end gap-2">
+                  <EditUserDialog user={user} onUserUpdated={fetchUsers} />
+                  <DeleteUserDialog
+                    userId={String(user._id)}
+                    onUserDeleted={fetchUsers}
+                  />
+                </div>
               </TableCell>
             </TableRow>
           ))}
@@ -96,7 +105,6 @@ export default function AdminPage() {
     <div className="flex flex-col gap-4">
       <div className="flex items-start justify-between">
         <h1 className="text-3xl font-bold">Benutzerverwaltung</h1>
-        {/* 5. Replace the old button with the new dialog component */}
         <AddUserDialog onUserAdded={fetchUsers} />
       </div>
       <Card>
