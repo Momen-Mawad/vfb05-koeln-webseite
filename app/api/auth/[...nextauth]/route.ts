@@ -4,12 +4,13 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "@/lib/mongodb";
 import dbConnect from "@/lib/dbConnect";
-import User, { IUser } from "@/models/User";
+import User, { UserRole } from "@/models/User";
 import bcrypt from "bcryptjs";
+import { Adapter } from "next-auth/adapters";
 
 // 1. Define and export your auth options
 export const authOptions: NextAuthOptions = {
-  adapter: MongoDBAdapter(clientPromise),
+  adapter: MongoDBAdapter(clientPromise) as Adapter,
   providers: [
     // ... your CredentialsProvider is here ...
     CredentialsProvider({
@@ -48,6 +49,20 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: "jwt",
+  },
+  callbacks: {
+    jwt({ token, user }) {
+      if (user) {
+        token.role = user.role;
+      }
+      return token;
+    },
+    session({ session, token }) {
+      if (session.user) {
+        session.user.role = token.role as UserRole;
+      }
+      return session;
+    },
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {

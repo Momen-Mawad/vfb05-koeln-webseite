@@ -12,14 +12,14 @@ export default async function DashboardPage() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <div className="p-8 border rounded-lg shadow-md text-center">
+    <div className="flex flex-col items-center justify-center">
+      <div className="p-3 border rounded-lg shadow-md text-center">
         <h1 className="text-2xl font-bold">Willkommen im Mitgliederbereich!</h1>
         <p className="mt-2">
           Angemeldet als:
           <strong> {session.user?.name || session.user?.email}</strong>
         </p>
-        <div className="mt-6">
+        <div className="mt-2">
           <SignOutButton />
         </div>
       </div>

@@ -29,7 +29,7 @@ export default async function ProfilePage() {
     "U";
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-2">
       <h1 className="text-3xl font-bold">Mein Profil</h1>
       <Card>
         <CardHeader>

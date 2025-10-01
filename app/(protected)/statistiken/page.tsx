@@ -22,7 +22,7 @@ const teamStats = {
 };
 
 const playerStats = [
-  { name: "Max Mustermann", spiele: 12, tore: 9, vorlagen: 5 },
+  { name: "Thomas Blum", spiele: 12, tore: 9, vorlagen: 5 },
   { name: "Peter Schmidt", spiele: 11, tore: 6, vorlagen: 8 },
   { name: "Jonas Becker", spiele: 12, tore: 2, vorlagen: 3 },
   { name: "Lukas Weber", spiele: 10, tore: 0, vorlagen: 1 },
@@ -36,7 +36,7 @@ export default async function StatisticsPage() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-2">
       <h1 className="text-3xl font-bold">Saison-Statistiken</h1>
 
       {/* Team Stats Overview */}

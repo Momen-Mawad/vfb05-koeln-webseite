@@ -4,7 +4,7 @@ export const allNews = [
     slug: "wichtiger-heimsieg",
     title: "Wichtiger Heimsieg in letzter Minute",
     summary:
-      "Ein spätes Tor von Max Mustermann sichert dem VfB 05 drei Punkte im Derby.",
+      "Ein spätes Tor von Thomas Blum sichert dem VfB 05 drei Punkte im Derby.",
     image: "/placeholder-news-1.png",
     date: "2025-09-19",
   },
@@ -43,7 +43,7 @@ export const teamRosters: {
     { num: 5, name: "Klaus Fischer", pos: "Verteidigung" },
     { num: 6, name: "Jonas Becker", pos: "Mittelfeld" },
     { num: 10, name: "Peter Schmidt", pos: "Mittelfeld" },
-    { num: 9, name: "Max Mustermann", pos: "Sturm" },
+    { num: 9, name: "Thomas Blum", pos: "Sturm" },
   ],
 };
 

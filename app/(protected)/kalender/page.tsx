@@ -30,9 +30,9 @@ export default async function CalendarPage() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-2">
       <h1 className="text-3xl font-bold">Kalender</h1>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-3">
         <Card className="lg:col-span-2">
           <CardHeader>
             <CardTitle>Monatsübersicht</CardTitle>
@@ -51,9 +51,9 @@ export default async function CalendarPage() {
           <CardHeader>
             <CardTitle>Nächste Termine</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-2">
             {upcomingEvents.map((event) => (
-              <div key={event.title} className="flex items-start gap-3">
+              <div key={event.title} className="flex items-start gap-1">
                 <div className="flex flex-col items-center justify-center rounded-md bg-muted p-2 text-sm">
                   <span>
                     {new Date(event.date).toLocaleString("de-DE", {
