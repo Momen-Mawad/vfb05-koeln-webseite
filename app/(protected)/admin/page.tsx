@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+// app/(protected)/admin/page.tsx
+
+import { useEffect, useState, useCallback } from "react";
 import {
   Card,
   CardContent,
@@ -18,34 +19,37 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { IUser } from "@/models/User";
+import AddUserDialog from "@/components/admin/AddUserDialog";
 
 export default function AdminPage() {
   const [users, setUsers] = useState<IUser[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const res = await fetch("/api/admin/users");
-        if (!res.ok) {
-          throw new Error("Fehler beim Abrufen der Benutzer");
-        }
-        const data = await res.json();
-        setUsers(data);
-      } catch (err) {
-        setError(
-          err instanceof Error
-            ? err.message
-            : "Ein unbekannter Fehler ist aufgetreten"
-        );
-      } finally {
-        setLoading(false);
+  const fetchUsers = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/admin/users");
+      if (!res.ok) {
+        throw new Error("Fehler beim Abrufen der Benutzer");
       }
-    };
-
-    fetchUsers();
+      const data = await res.json();
+      setUsers(data);
+      setError(null);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Ein unbekannter Fehler ist aufgetreten"
+      );
+    } finally {
+      setLoading(false);
+    }
   }, []);
+
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
 
   const renderContent = () => {
     if (loading) {
@@ -71,9 +75,15 @@ export default function AdminPage() {
             <TableRow key={String(user._id)}>
               <TableCell className="font-medium">{user.name}</TableCell>
               <TableCell>{user.email}</TableCell>
-              <TableCell>{typeof user.role === "string" ? user.role : String(user.role)}</TableCell>
               <TableCell>
-                {user.createdAt ? new Date(user.createdAt).toLocaleDateString("de-DE") : "—"}
+                {typeof user.role === "string"
+                  ? user.role
+                  : String(user.role?.toString?.() ?? "")}
+              </TableCell>
+              <TableCell>
+                {user.createdAt
+                  ? new Date(user.createdAt).toLocaleDateString("de-DE")
+                  : "-"}
               </TableCell>
             </TableRow>
           ))}
@@ -83,10 +93,11 @@ export default function AdminPage() {
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-4">
       <div className="flex items-start justify-between">
         <h1 className="text-3xl font-bold">Benutzerverwaltung</h1>
-        <Button size="sm">Benutzer hinzufügen</Button>
+        {/* 5. Replace the old button with the new dialog component */}
+        <AddUserDialog onUserAdded={fetchUsers} />
       </div>
       <Card>
         <CardHeader>
