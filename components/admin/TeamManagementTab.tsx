@@ -17,7 +17,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import AddTeamDialog from "./AddTeamDialog"; // 1. Import the new component
+import AddTeamDialog from "./AddTeamDialog";
+import EditTeamDialog from "./EditTeamDialog";
+import DeleteTeamDialog from "./DeleteTeamDialog";
 
 interface PopulatedTeam {
   _id: string;
@@ -79,6 +81,15 @@ export default function TeamManagementTab() {
               <TableCell>{team.trainer?.name || "N/A"}</TableCell>
               <TableCell>{team.spieler.length}</TableCell>
               <TableCell className="text-right"></TableCell>
+              <TableCell className="text-right">
+                <div className="flex justify-end gap-2">
+                  <EditTeamDialog team={team} onTeamUpdated={fetchTeams} />
+                  <DeleteTeamDialog
+                    teamId={team._id}
+                    onTeamDeleted={fetchTeams}
+                  />
+                </div>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

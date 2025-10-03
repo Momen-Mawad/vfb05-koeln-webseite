@@ -11,6 +11,12 @@ import { UserRole } from "@/models/model-types";
 
 const usersToSeed = [
   {
+    email: "dev@vfb05.de",
+    name: "Momen Dev",
+    password: "password123",
+    role: UserRole.VERWALTUNG,
+  },
+  {
     email: "admin@vfb05.de",
     name: "Torsten Verwaltung",
     password: "password123",
