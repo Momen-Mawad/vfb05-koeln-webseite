@@ -4,9 +4,10 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import clientPromise from "@/lib/mongodb";
 import dbConnect from "@/lib/dbConnect";
-import User, { UserRole } from "@/models/User";
+import User from "@/models/User";
 import bcrypt from "bcryptjs";
 import { Adapter } from "next-auth/adapters";
+import { UserRole } from "@/models/model-types";
 
 // 1. Define and export your auth options
 export const authOptions: NextAuthOptions = {
