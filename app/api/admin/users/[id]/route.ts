@@ -9,7 +9,7 @@ import { UserRole } from "@/models/model-types";
 // GET a single user by ID
 export async function GET(
   request: NextRequest,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> } // Match the expected Promise type
 ) {
   const session = await getServerSession(authOptions);
   if (!session || session.user.role !== UserRole.VERWALTUNG) {
@@ -18,7 +18,8 @@ export async function GET(
 
   await dbConnect();
   try {
-    const user = await User.findById(context.params.id);
+    const { id } = await context.params; // Await the params to get the ID
+    const user = await User.findById(id);
     if (!user) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
     }
@@ -34,7 +35,7 @@ export async function GET(
 // PUT (update) a single user by ID
 export async function PUT(
   request: NextRequest,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> } // Match the expected Promise type
 ) {
   const session = await getServerSession(authOptions);
   if (!session || session.user.role !== UserRole.VERWALTUNG) {
@@ -43,13 +44,13 @@ export async function PUT(
 
   await dbConnect();
   try {
+    const { id } = await context.params; // Await the params
     const { name, role } = await request.json();
 
-    // Find user by ID and update their name and role
     const updatedUser = await User.findByIdAndUpdate(
-      context.params.id,
+      id,
       { name, role },
-      { new: true } // This option returns the updated document
+      { new: true }
     );
 
     if (!updatedUser) {
@@ -65,9 +66,10 @@ export async function PUT(
   }
 }
 
+// DELETE a single user by ID
 export async function DELETE(
   request: NextRequest,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> } // Match the expected Promise type
 ) {
   const session = await getServerSession(authOptions);
   if (!session || session.user.role !== UserRole.VERWALTUNG) {
@@ -76,7 +78,8 @@ export async function DELETE(
 
   await dbConnect();
   try {
-    const deletedUser = await User.findByIdAndDelete(context.params.id);
+    const { id } = await context.params; // Await the params
+    const deletedUser = await User.findByIdAndDelete(id);
 
     if (!deletedUser) {
       return NextResponse.json({ error: "User not found" }, { status: 404 });
