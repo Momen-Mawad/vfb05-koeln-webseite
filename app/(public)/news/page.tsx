@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function NewsPage() {
   return (
-    <div className="container mx-auto px-4 md:px-6 py-12">
-      <div className="space-y-4 text-center mb-10">
+    <div className="container mx-auto px-2 md:px-6 py-4">
+      <div className="space-y-2 text-center mb-2">
         <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
           Alle Neuigkeiten
         </h1>
@@ -15,11 +15,11 @@ export default function NewsPage() {
           passiert.
         </p>
       </div>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-3">
         {allNews.map((article) => (
           <Link href={`/news/${article.slug}`} key={article.slug}>
             <Card className="overflow-hidden h-full transform hover:scale-105 transition-transform duration-300">
-              <div className="relative w-full h-48">
+              <div className="relative w-full h-24">
                 <Image
                   src={article.image}
                   alt={article.title}
@@ -27,7 +27,7 @@ export default function NewsPage() {
                   style={{ objectFit: "cover" }}
                 />
               </div>
-              <CardContent className="p-4">
+              <CardContent className="p-2">
                 <p className="text-xs text-muted-foreground">
                   {new Date(article.date).toLocaleDateString("de-DE", {
                     year: "numeric",

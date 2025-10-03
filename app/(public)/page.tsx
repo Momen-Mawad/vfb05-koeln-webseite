@@ -30,38 +30,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* --- Next Match Section --- */}
-      <section className="container mx-auto px-4 md:px-6 py-12">
-        <Card>
-          <CardContent className="flex flex-col md:flex-row items-center justify-around p-6 gap-6">
-            <div className="text-center">
-              <p className="text-sm text-muted-foreground">Nächstes Spiel</p>
-              <p className="text-lg font-bold">Kreisliga C - 13. Spieltag</p>
-            </div>
-            <div className="flex items-center gap-4 text-2xl font-bold">
-              <span>VfB 05 Köln</span>
-              <span className="text-muted-foreground">vs.</span>
-              <span>SC West Köln</span>
-            </div>
-            <div className="text-center">
-              <p className="text-lg font-bold">Sonntag, 28. September 2025</p>
-              <p className="text-sm text-muted-foreground">
-                15:00 Uhr - Sportpark West
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-      </section>
-
       {/* --- Latest News Section --- */}
-      <section className="bg-muted/40 py-12">
+      <section className="bg-muted/40 py-4">
         <div className="container mx-auto px-4 md:px-6">
-          <h2 className="text-3xl font-bold text-center mb-8">Aktuelle News</h2>
-          <div className="grid gap-6 md:grid-cols-2">
+          <h2 className="text-3xl font-bold text-center mb-2">Aktuelle News</h2>
+          <div className="grid gap-2 md:grid-cols-2">
             {latestNews.map((article) => (
               <Link href="/news" key={article.title}>
                 <Card className="overflow-hidden h-full transform hover:scale-105 transition-transform duration-300">
-                  <div className="relative w-full h-48">
+                  <div className="relative w-full h-24">
                     <Image
                       src={article.image}
                       alt={article.title}
@@ -69,7 +46,7 @@ export default function HomePage() {
                       style={{ objectFit: "cover" }}
                     />
                   </div>
-                  <CardContent className="p-4">
+                  <CardContent className="p-2">
                     <h3 className="text-lg font-bold">{article.title}</h3>
                     <p className="text-sm text-muted-foreground mt-1">
                       {article.summary}

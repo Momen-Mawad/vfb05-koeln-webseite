@@ -9,7 +9,7 @@ export default function PublicLayout({
 }) {
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="px-4 lg:px-6 h-8 flex items-center shadow-sm">
+      <header className="flex items-center justify-between px-2 shadow-sm lg:px-6 h-6">
         <Link href="/" className="flex items-center justify-center">
           <Image
             src="/vfb-logo.png"
@@ -19,7 +19,7 @@ export default function PublicLayout({
           />
           <span className="sr-only">VfB 05 Köln</span>
         </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
+        <nav className="flex gap-1 sm:gap-2">
           <Link
             href="/news"
             className="text-sm font-medium hover:underline underline-offset-4"
@@ -47,7 +47,7 @@ export default function PublicLayout({
         </nav>
       </header>
       <main className="flex-1">{children}</main>
-      <footer className="flex flex-col gap-2 sm:flex-row py-3 w-full shrink-0 items-center px-4 md:px-6 border-t">
+      <footer className="flex flex-col gap-2 sm:flex-row py-1 w-full shrink-0 items-center px-4 md:px-6 border-t">
         <p className="text-xs text-muted-foreground">
           &copy; {new Date().getFullYear()} VfB 05 Köln e.V. Alle Rechte
           vorbehalten.
