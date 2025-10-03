@@ -24,12 +24,12 @@ const TeamSchema = new mongoose.Schema(
     },
     trainer: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // This creates a reference to a document in the 'User' collection
+      ref: "User", 
     },
     spieler: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User", // This creates an array of references to 'User' documents
+        ref: "User",
       },
     ],
   },

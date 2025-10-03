@@ -1,11 +1,11 @@
-// app/api/admin/users/route.ts
+// app/api/admin/teams/route.ts
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import dbConnect from "@/lib/dbConnect";
+import Team from "@/models/Team";
 import User from "@/models/User";
 import { UserRole } from "@/models/model-types";
-import bcrypt from "bcryptjs";
 
 export async function GET(request: Request) {
   const session = await getServerSession(authOptions);
@@ -13,19 +13,15 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });
   }
 
-  const { searchParams } = new URL(request.url);
-  const role = searchParams.get("role");
-
-  const filter: { role?: string } = {};
-  if (role && Object.values(UserRole).includes(role as UserRole)) {
-    filter.role = role;
-  }
-
   await dbConnect();
 
   try {
-    const users = await User.find(filter).sort({ createdAt: -1 });
-    return NextResponse.json(users, { status: 200 });
+    const teams = await Team.find({})
+      .sort({ name: 1 })
+      .populate("trainer", "name email")
+      .populate("spieler", "name email");
+
+    return NextResponse.json(teams, { status: 200 });
   } catch (error) {
     console.error("API Error:", error);
     return NextResponse.json(
@@ -44,37 +40,35 @@ export async function POST(request: Request) {
   await dbConnect();
 
   try {
-    const { name, email, password, role } = await request.json();
+    const { name, liga, slug, trainer } = await request.json();
 
-    if (!name || !email || !password || !role) {
+    // Basic validation
+    if (!name || !slug) {
       return NextResponse.json(
-        { error: "Missing required fields" },
+        { error: "Name and slug are required fields" },
         { status: 400 }
       );
     }
 
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
+    // Check if a team with this slug already exists
+    const existingTeam = await Team.findOne({ slug });
+    if (existingTeam) {
       return NextResponse.json(
-        { error: "User with this email already exists" },
+        { error: "A team with this slug already exists" },
         { status: 409 }
       );
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = new User({
+    const newTeam = new Team({
       name,
-      email,
-      password: hashedPassword,
-      role,
+      liga,
+      slug,
+      trainer: trainer || null, // Assign trainer if provided
     });
-    await newUser.save();
 
-    const userResponse = newUser.toObject();
-    delete userResponse.password;
+    await newTeam.save();
 
-    return NextResponse.json(userResponse, { status: 201 });
+    return NextResponse.json(newTeam, { status: 201 });
   } catch (error) {
     console.error("API Error:", error);
     return NextResponse.json(

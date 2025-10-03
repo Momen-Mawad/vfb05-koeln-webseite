@@ -36,7 +36,7 @@ export default function ProtectedLayout({
 
       <div className="flex flex-col">
         {/* --- Mobile Header --- */}
-        <header className="flex h-14 items-center gap-4 border-b bg-muted/40 lg:h-[60px]">
+        <header className="flex h-6 px-2 items-center gap-4 border-b bg-muted/40 lg:h-[60px]">
           <Sheet>
             <SheetTrigger asChild>
               <Button
@@ -48,7 +48,7 @@ export default function ProtectedLayout({
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="flex flex-col">
+            <SheetContent side="left" className="flex flex-col w-xs">
               <ProtectedNav /> {/* And also use it here for the mobile sheet */}
             </SheetContent>
           </Sheet>
