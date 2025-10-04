@@ -2,6 +2,9 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Users } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -83,6 +86,11 @@ export default function TeamManagementTab() {
               <TableCell className="text-right"></TableCell>
               <TableCell className="text-right">
                 <div className="flex justify-end gap-2">
+                  <Button asChild variant="outline" size="icon">
+                    <Link href={`/admin/teams/${team._id}/kader`}>
+                      <Users />
+                    </Link>
+                  </Button>
                   <EditTeamDialog team={team} onTeamUpdated={fetchTeams} />
                   <DeleteTeamDialog
                     teamId={team._id}

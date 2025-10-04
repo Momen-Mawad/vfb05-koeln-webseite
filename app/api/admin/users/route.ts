@@ -15,16 +15,22 @@ export async function GET(request: NextRequest) {
 
   const { searchParams } = new URL(request.url);
   const role = searchParams.get("role");
+  const availableForTeam = searchParams.get("availableForTeam");
 
-  const filter: { role?: string } = {};
+  const filter: { role?: string; team?: string | null | { $in: (null | undefined)[] } } = {};
   if (role && Object.values(UserRole).includes(role as UserRole)) {
     filter.role = role;
+  }
+
+  if (availableForTeam === "true") {
+    filter.role = UserRole.SPIELER;
+    filter.team = { $in: [null, undefined] };
   }
 
   await dbConnect();
 
   try {
-    const users = await User.find(filter).sort({ createdAt: -1 });
+    const users = await User.find(filter).sort({ name: 1 });
     return NextResponse.json(users, { status: 200 });
   } catch (error) {
     console.error("API Error:", error);

@@ -53,7 +53,7 @@ export default function ProtectedLayout({
             </SheetContent>
           </Sheet>
 
-          <div className="w-full flex-1">{/* Header content */}</div>
+          <div className="w-full flex-1"></div>
         </header>
 
         {/* --- Page Content --- */}
