@@ -46,10 +46,10 @@ export async function PUT(
   await dbConnect();
   try {
     const { id } = await context.params;
-    const { name, liga, trainer } = await request.json();
+    const { name, liga, trainer, image } = await request.json();
     const updatedTeam = await Team.findByIdAndUpdate(
       id,
-      { name, liga, trainer: trainer === "none" ? null : trainer },
+      { name, liga, trainer: trainer === "none" ? null : trainer, image },
       { new: true }
     );
 

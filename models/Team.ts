@@ -4,6 +4,7 @@ export interface ITeam extends mongoose.Document {
   name: string;
   slug: string;
   liga: string;
+  image: string;
   trainer: mongoose.Types.ObjectId;
   spieler: mongoose.Types.ObjectId[];
 }
@@ -22,9 +23,10 @@ const TeamSchema = new mongoose.Schema(
     liga: {
       type: String,
     },
+    image: { type: String },
     trainer: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", 
+      ref: "User",
     },
     spieler: [
       {

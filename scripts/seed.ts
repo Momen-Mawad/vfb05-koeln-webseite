@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import dbConnect from "@/lib/dbConnect";
 import User from "@/models/User";
-import Team from "@/models/Team"; // 1. Import the Team model
+import Team from "@/models/Team";
 import { UserRole } from "@/models/model-types";
 
 const usersToSeed = [
@@ -38,12 +38,42 @@ const usersToSeed = [
 
 // 2. Define the teams to be created
 const teamsToSeed = [
-  { name: "Herren 1. Mannschaft", slug: "herren-1", liga: "Kreisliga C" },
-  { name: "Herren 2. Mannschaft", slug: "herren-2", liga: "Kreisliga D" },
-  { name: "Alte Herren", slug: "alte-herren", liga: "" },
-  { name: "A-Junioren U19", slug: "u19-junioren", liga: "" },
-  { name: "B-Junioren U17", slug: "u17-junioren", liga: "" },
-  { name: "C-Junioren U15", slug: "u15-junioren", liga: "" },
+  {
+    name: "Herren 1. Mannschaft",
+    slug: "herren-1",
+    liga: "Kreisliga C",
+    image: "/teams/herren-1.jpg",
+  },
+  {
+    name: "Herren 2. Mannschaft",
+    slug: "herren-2",
+    liga: "Kreisliga D",
+    image: "/teams/herren-2.jpg",
+  },
+  {
+    name: "Alte Herren",
+    slug: "alte-herren",
+    liga: "",
+    image: "/teams/alte-herren.jpg",
+  },
+  {
+    name: "A-Junioren U19",
+    slug: "u19-junioren",
+    liga: "",
+    image: "/teams/u19-junioren.jpg",
+  },
+  {
+    name: "B-Junioren U17",
+    slug: "u17-junioren",
+    liga: "",
+    image: "/teams/u17-junioren.jpg",
+  },
+  {
+    name: "C-Junioren U15",
+    slug: "u15-junioren",
+    liga: "",
+    image: "/teams/u15-junioren.jpg",
+  },
 ];
 
 const seedDatabase = async () => {

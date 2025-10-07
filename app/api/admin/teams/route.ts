@@ -40,9 +40,8 @@ export async function POST(request: NextRequest) {
   await dbConnect();
 
   try {
-    const { name, liga, slug, trainer } = await request.json();
+    const { name, liga, slug, trainer, image } = await request.json();
 
-    // Basic validation
     if (!name || !slug) {
       return NextResponse.json(
         { error: "Name and slug are required fields" },
@@ -50,7 +49,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if a team with this slug already exists
     const existingTeam = await Team.findOne({ slug });
     if (existingTeam) {
       return NextResponse.json(
@@ -63,7 +61,8 @@ export async function POST(request: NextRequest) {
       name,
       liga,
       slug,
-      trainer: trainer || null, // Assign trainer if provided
+      image: image || null,
+      trainer: trainer || null,
     });
 
     await newTeam.save();

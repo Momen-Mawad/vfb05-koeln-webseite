@@ -37,6 +37,7 @@ interface PopulatedTeam {
   _id: string;
   name: string;
   liga: string;
+  image?: string;
   trainer?: { _id: string; name: string };
 }
 
@@ -45,6 +46,12 @@ const formSchema = z.object({
     .string()
     .min(2, { message: "Name muss mindestens 2 Zeichen lang sein." }),
   liga: z.string().optional(),
+  image: z
+    .string()
+    .url({ message: "Bitte geben Sie eine gültige URL an." })
+    .optional()
+    .or(z.literal("")),
+
   trainer: z.string().optional(),
 });
 
@@ -66,6 +73,7 @@ export default function EditTeamDialog({
     defaultValues: {
       name: team.name || "",
       liga: team.liga || "",
+      image: team.image || "",
       trainer: team.trainer?._id || "none",
     },
   });
@@ -139,6 +147,22 @@ export default function EditTeamDialog({
                   <FormLabel>Liga</FormLabel>
                   <FormControl>
                     <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="image"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Bild-URL (Cloudinary)</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="https://res.cloudinary.com/..."
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

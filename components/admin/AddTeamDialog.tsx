@@ -39,6 +39,12 @@ const formSchema = z.object({
   slug: z
     .string()
     .min(2, { message: "Slug muss mindestens 2 Zeichen lang sein." }),
+  image: z
+    .string()
+    .url({ message: "Bitte geben Sie eine gültige URL an." })
+    .optional()
+    .or(z.literal("")),
+
   trainer: z.string().optional(), // We'll pass the trainer's ID
 });
 
@@ -149,6 +155,22 @@ export default function AddTeamDialog({ onTeamAdded }: AddTeamDialogProps) {
                   <FormLabel>Liga</FormLabel>
                   <FormControl>
                     <Input placeholder="z.B. Bezirksliga" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="image"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Bild-URL (Cloudinary)</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="https://res.cloudinary.com/..."
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
