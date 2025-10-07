@@ -36,43 +36,42 @@ const usersToSeed = [
   },
 ];
 
-// 2. Define the teams to be created
 const teamsToSeed = [
   {
     name: "Herren 1. Mannschaft",
     slug: "herren-1",
-    liga: "Kreisliga C",
-    image: "/teams/herren-1.jpg",
+    liga: "Kreisliga A",
+    sortOrder: 1,
   },
   {
     name: "Herren 2. Mannschaft",
     slug: "herren-2",
-    liga: "Kreisliga D",
-    image: "/teams/herren-2.jpg",
+    liga: "Kreisliga C",
+    sortOrder: 2,
   },
   {
     name: "Alte Herren",
     slug: "alte-herren",
-    liga: "",
-    image: "/teams/alte-herren.jpg",
+    liga: "Freizeitliga",
+    sortOrder: 3,
   },
   {
     name: "A-Junioren U19",
     slug: "u19-junioren",
-    liga: "",
-    image: "/teams/u19-junioren.jpg",
+    liga: "Sonderliga",
+    sortOrder: 4,
   },
   {
     name: "B-Junioren U17",
     slug: "u17-junioren",
-    liga: "",
-    image: "/teams/u17-junioren.jpg",
+    liga: "Bezirksliga",
+    sortOrder: 5,
   },
   {
     name: "C-Junioren U15",
     slug: "u15-junioren",
-    liga: "",
-    image: "/teams/u15-junioren.jpg",
+    liga: "Leistungsklasse",
+    sortOrder: 6,
   },
 ];
 

@@ -1,22 +1,22 @@
 // lib/data.ts
-import "server-only"; // This ensures this code only ever runs on the server
+import "server-only";
 import dbConnect from "./dbConnect";
 import Team from "@/models/Team";
-import User from "@/models/User"; // Import User to ensure model is registered
+import User from "@/models/User";
 
 // Function to fetch all teams for the public listing page
 export async function fetchPublicTeams() {
   try {
     await dbConnect();
     const teams = await Team.find({})
-      .sort({ name: 1 })
+      .sort({ sortOrder: 1 })
       .populate("trainer", "name")
       .lean();
     // .lean() returns plain JavaScript objects instead of Mongoose documents for better performance
     return teams;
   } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch teams.");
+    console.error(error);
+    throw new Error(error as string);
   }
 }
 
@@ -24,14 +24,14 @@ export async function fetchPublicTeams() {
 export async function fetchTeamBySlug(slug: string) {
   try {
     await dbConnect();
-    const team = await Team.findOne({ slug: slug })
+    const team = await Team.findOne({ slug })
       .populate("trainer", "name")
       .populate("spieler", "name")
       .lean();
 
-    return team;
+    return team || null;
   } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch team.");
+    console.error(error);
+    throw new Error(error as string);
   }
 }

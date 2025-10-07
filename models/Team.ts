@@ -1,3 +1,4 @@
+// models/Team.ts
 import mongoose from "mongoose";
 
 export interface ITeam extends mongoose.Document {
@@ -5,6 +6,7 @@ export interface ITeam extends mongoose.Document {
   slug: string;
   liga: string;
   image: string;
+  sortOrder: { type: number };
   trainer: mongoose.Types.ObjectId;
   spieler: mongoose.Types.ObjectId[];
 }

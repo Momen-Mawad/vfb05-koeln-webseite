@@ -1,4 +1,8 @@
+// lib/dbConnect.ts
 import mongoose from "mongoose";
+
+import "@/models/User";
+import "@/models/Team";
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -7,12 +11,6 @@ if (!MONGODB_URI) {
     "Please define the MONGODB_URI environment variable inside .env.local"
   );
 }
-
-/**
- * Global is used here to maintain a cached connection across hot reloads
- * in development. This prevents connections from growing exponentially
- * during API Route usage.
- */
 
 declare global {
   var mongooseCache: {

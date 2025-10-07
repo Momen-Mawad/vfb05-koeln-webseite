@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
 
   try {
     const teams = await Team.find({})
-      .sort({ name: 1 })
+      .sort({ sortOrder: 1 })
       .populate("trainer", "name email")
       .populate("spieler", "name email");
 
