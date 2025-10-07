@@ -2,7 +2,7 @@
 import "server-only";
 import dbConnect from "./dbConnect";
 import Team from "@/models/Team";
-import User from "@/models/User";
+import { PopulatedTeam } from "@/models/model-types";
 
 // Function to fetch all teams for the public listing page
 export async function fetchPublicTeams() {
@@ -21,7 +21,9 @@ export async function fetchPublicTeams() {
 }
 
 // Function to fetch a single team by its slug for the detail page
-export async function fetchTeamBySlug(slug: string) {
+export async function fetchTeamBySlug(
+  slug: string
+): Promise<PopulatedTeam | null> {
   try {
     await dbConnect();
     const team = await Team.findOne({ slug })
@@ -29,7 +31,7 @@ export async function fetchTeamBySlug(slug: string) {
       .populate("spieler", "name")
       .lean();
 
-    return team || null;
+    return team as PopulatedTeam | null;
   } catch (error) {
     console.error(error);
     throw new Error(error as string);

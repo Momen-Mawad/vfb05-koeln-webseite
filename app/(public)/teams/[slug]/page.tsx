@@ -67,7 +67,7 @@ export default async function TeamDetailPage({
                   </TableHeader>
                   <TableBody>
                     {team.spieler?.map((player) => (
-                      <TableRow key={player._id}>
+                      <TableRow key={player._id?.toString()}>
                         <TableCell>{player.name}</TableCell>
                       </TableRow>
                     ))}
