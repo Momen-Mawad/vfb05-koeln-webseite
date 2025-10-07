@@ -30,6 +30,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { IUser } from "@/models/User";
+import { Plus } from "lucide-react";
 
 const formSchema = z.object({
   name: z
@@ -113,7 +114,14 @@ export default function AddTeamDialog({ onTeamAdded }: AddTeamDialogProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Team hinzufügen</Button>
+        <div>
+          <Button variant="outline" size="icon" className="md:hidden">
+            <Plus />
+          </Button>
+          <Button className="hidden md:inline-flex">
+            Team hinzufügen
+          </Button>
+        </div>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

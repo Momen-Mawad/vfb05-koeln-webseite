@@ -10,6 +10,7 @@ import Team from "@/models/Team";
 import { UserRole } from "@/models/model-types";
 
 const usersToSeed = [
+  // Admins
   {
     email: "dev@vfb05.de",
     name: "Momen Dev",
@@ -18,18 +19,62 @@ const usersToSeed = [
   },
   {
     email: "admin@vfb05.de",
-    name: "Torsten Verwaltung",
+    name: "Torsten Diener",
     password: "password123",
     role: UserRole.VERWALTUNG,
   },
+  // Trainer
   {
-    email: "trainer@vfb05.de",
-    name: "Dietmar Trainer",
+    email: "detlef.kilburg@vfb05.de",
+    name: "Detlef Kilburg",
     password: "password123",
     role: UserRole.TRAINER,
   },
+  // Spieler (Players)
   {
-    email: "spieler@vfb05.de",
+    email: "momen.mawad@vfb05.de",
+    name: "Momen Mawad",
+    password: "password123",
+    role: UserRole.SPIELER,
+  },
+  {
+    email: "denis.buddel@vfb05.de",
+    name: "Denis Buddel",
+    password: "password123",
+    role: UserRole.SPIELER,
+  },
+  {
+    email: "fynn.händler@vfb05.de",
+    name: "Fynn Händler",
+    password: "password123",
+    role: UserRole.SPIELER,
+  },
+  {
+    email: "justin.diener@vfb05.de",
+    name: "Justin Diener",
+    password: "password123",
+    role: UserRole.SPIELER,
+  },
+  {
+    email: "mario.hölz@vfb05.de",
+    name: "Mario Hölz",
+    password: "password123",
+    role: UserRole.SPIELER,
+  },
+  {
+    email: "patrick.roofer@vfb05.de",
+    name: "Patrick Roofer",
+    password: "password123",
+    role: UserRole.SPIELER,
+  },
+  {
+    email: "rene.aras@vfb05.de",
+    name: "Rene Aras",
+    password: "password123",
+    role: UserRole.SPIELER,
+  },
+  {
+    email: "thomas.blum@vfb05.de",
     name: "Thomas Blum",
     password: "password123",
     role: UserRole.SPIELER,
@@ -40,37 +85,39 @@ const teamsToSeed = [
   {
     name: "Herren 1. Mannschaft",
     slug: "herren-1",
-    liga: "Kreisliga A",
+    liga: "Kreisliga C",
     sortOrder: 1,
+    image:
+      "https://res.cloudinary.com/dzwfv7qng/image/upload/v1759617797/test_vrfikq.png",
   },
   {
     name: "Herren 2. Mannschaft",
     slug: "herren-2",
-    liga: "Kreisliga C",
+    liga: "Kreisliga D",
     sortOrder: 2,
   },
   {
     name: "Alte Herren",
     slug: "alte-herren",
-    liga: "Freizeitliga",
+    liga: "",
     sortOrder: 3,
   },
   {
     name: "A-Junioren U19",
     slug: "u19-junioren",
-    liga: "Sonderliga",
+    liga: "",
     sortOrder: 4,
   },
   {
     name: "B-Junioren U17",
     slug: "u17-junioren",
-    liga: "Bezirksliga",
+    liga: "",
     sortOrder: 5,
   },
   {
     name: "C-Junioren U15",
     slug: "u15-junioren",
-    liga: "Leistungsklasse",
+    liga: "",
     sortOrder: 6,
   },
 ];

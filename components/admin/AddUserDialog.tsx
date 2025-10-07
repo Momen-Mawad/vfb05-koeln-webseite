@@ -31,6 +31,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { UserRole } from "@/models/model-types";
+import { Plus } from "lucide-react";
 
 // Define the form validation schema using Zod
 const formSchema = z.object({
@@ -94,9 +95,14 @@ export default function AddUserDialog({ onUserAdded }: AddUserDialogProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Benutzer hinzufügen</Button>
+        <div>
+          <Button variant="outline" size="icon" className="md:hidden">
+            <Plus />
+          </Button>
+          <Button className="hidden md:inline-flex">Benutzer hinzufügen</Button>
+        </div>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Neuen Benutzer anlegen</DialogTitle>
           <DialogDescription>

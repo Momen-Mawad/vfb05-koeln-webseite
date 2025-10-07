@@ -97,7 +97,7 @@ export default function EditUserDialog({
           <Pencil />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Benutzer bearbeiten</DialogTitle>
           <DialogDescription>

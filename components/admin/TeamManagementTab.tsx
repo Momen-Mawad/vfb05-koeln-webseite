@@ -106,10 +106,9 @@ export default function TeamManagementTab() {
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       <div className="flex items-start justify-between">
         <h2 className="text-2xl font-bold">Teamverwaltung</h2>
-        {/* 2. Replace the old button with the new dialog */}
         <AddTeamDialog onTeamAdded={fetchTeams} />
       </div>
       <Card>

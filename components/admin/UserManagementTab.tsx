@@ -103,7 +103,7 @@ export default function UserManagementTab() {
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-2">
       <div className="flex items-start justify-between">
         <h2 className="text-2xl font-bold">Benutzerverwaltung</h2>
         <AddUserDialog onUserAdded={fetchUsers} />
