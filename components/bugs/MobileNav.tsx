@@ -2,6 +2,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
@@ -21,9 +22,15 @@ const bugsNavItems = [
 ];
 
 export default function BugsMobileNav() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleLinkClick = () => {
+    setIsOpen(false);
+  };
+
   return (
     <header className="sticky top-0 z-30 flex h-4 items-center gap-1 border-b bg-background px-1 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6 md:hidden">
-      <Sheet>
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
           <Button size="icon" variant="outline" className="md:hidden">
             <Menu className="h-5 w-5" />
@@ -39,6 +46,7 @@ export default function BugsMobileNav() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={handleLinkClick}
                 className="flex items-center gap-2 px-2.5 text-muted-foreground hover:text-foreground"
               >
                 {item.label}

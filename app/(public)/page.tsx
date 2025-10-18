@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 import { allNews } from "@/lib/mock-data";
+import CloudinaryImage from "@/components/CloudinaryImage";
 
 // Mock data for news articles
 const latestNews = allNews.slice(0, 2);
@@ -12,9 +13,9 @@ export default function HomePage() {
     <div className="flex flex-col">
       {/* --- Hero Section --- */}
       <section className="relative w-full h-[60vh] flex items-center justify-center text-center text-white">
-        <Image
-          src="/jubelnde_mannschaft.png"
-          alt="Jubelnde Mannschaft"
+        <CloudinaryImage
+          src="v1760796463/verein_startseite_20250823_l8gtxr.png"
+          alt="VfB 05 Köln Hero Image"
           fill
           style={{ objectFit: "cover" }}
           className="brightness-50"
