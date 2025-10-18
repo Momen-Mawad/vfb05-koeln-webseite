@@ -27,10 +27,7 @@ export async function GET(
     }
     return NextResponse.json(team, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error }, { status: 500 });
   }
 }
 
@@ -58,10 +55,7 @@ export async function PUT(
     }
     return NextResponse.json(updatedTeam, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error }, { status: 500 });
   }
 }
 
@@ -88,10 +82,7 @@ export async function DELETE(
       { status: 200 }
     );
   } catch (error) {
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error }, { status: 500 });
   }
 }
 
@@ -153,10 +144,6 @@ export async function PATCH(
 
     return NextResponse.json(populatedTeam, { status: 200 });
   } catch (error) {
-    console.error("API Error:", error);
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error }, { status: 500 });
   }
 }

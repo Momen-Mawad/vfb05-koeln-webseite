@@ -4,10 +4,9 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import dbConnect from "@/lib/dbConnect";
 import Team from "@/models/Team";
-import User from "@/models/User";
 import { UserRole } from "@/models/model-types";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   const session = await getServerSession(authOptions);
   if (!session || session.user.role !== UserRole.VERWALTUNG) {
     return NextResponse.json({ error: "Forbidden" }, { status: 403 });

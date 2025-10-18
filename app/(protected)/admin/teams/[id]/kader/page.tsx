@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -38,7 +38,6 @@ interface TeamWithRoster {
 }
 
 export default function ManageRosterPage() {
-  const router = useRouter();
   const params = useParams();
   const teamId = params.id as string;
 

@@ -1,3 +1,4 @@
+// app/(public)/layout.tsx
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -31,6 +32,12 @@ export default function PublicLayout({
             className="text-sm font-medium hover:underline underline-offset-4"
           >
             Teams
+          </Link>
+          <Link
+            href="/bugs"
+            className="text-sm font-medium hover:underline underline-offset-4"
+          >
+            BuGS
           </Link>
           <Link
             href="/verein"
